@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DutyWindow</class>
+ <widget class="QMainWindow" name="DutyWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>750</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>600</width>
+    <height>500</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>750</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <family>Verdana</family>
+    <pointsize>12</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Дежурный по части</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="allow_btn">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>500</y>
+      <width>240</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 255, 0);
+font-size: 25px;
+color: white;
+border-radius: 30px;</string>
+    </property>
+    <property name="text">
+     <string>Разрешить</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="forbid_btn">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>500</y>
+      <width>240</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: red;
+font-size: 25px;
+color: white;
+border-radius: 30px;</string>
+    </property>
+    <property name="text">
+     <string>Запретить</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>30</y>
+      <width>61</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Убыли:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>240</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Прибыли:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>141</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Общий список:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="new_car">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>450</y>
+      <width>581</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>* Новых машин нет</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="clean_btn">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>440</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgb(217, 0, 0);
+border-radius: 10px;
+color: white;
+font-size: 16px;</string>
+    </property>
+    <property name="text">
+     <string>Очистить</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../Desktop/DIPLOMA/garbage.png</normaloff>../../Desktop/DIPLOMA/garbage.png</iconset>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="all_cars">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>60</y>
+      <width>311</width>
+      <height>371</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="departed_cars">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>60</y>
+      <width>381</width>
+      <height>171</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="arrived_cars">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>270</y>
+      <width>381</width>
+      <height>161</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="depart_amount">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>20</y>
+      <width>31</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="arrive_amount">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>230</y>
+      <width>31</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="cars_amount">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>20</y>
+      <width>31</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
