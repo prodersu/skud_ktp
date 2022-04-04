@@ -35,7 +35,7 @@ def arrive_car(car_id, num_model, arrived_time):
 
 def delete_car(car_id):
     with con:
-        con.execute("delete from cars where id=?", car_id)
+        con.execute("delete from cars where id like '%"+car_id+"%'")
         con.commit()
 
 

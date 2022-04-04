@@ -14,16 +14,6 @@
    <string>Список техники</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QListWidget" name="all_cars">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>50</y>
-      <width>371</width>
-      <height>361</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
@@ -162,6 +152,16 @@ border-radius: 15px;</string>
     </property>
     <property name="text">
      <string>Удалить</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="all_cars">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>50</y>
+      <width>311</width>
+      <height>371</height>
+     </rect>
     </property>
    </widget>
   </widget>

@@ -65,7 +65,7 @@ class ParkWindow(QtWidgets.QMainWindow, Ui_ParkWindow):
         db.depart_car(car_id, dep_count, text[3], num_model)
         self.new_car.setText(default_text)
         self.new_car.setFont(QFont('Verdana', 12))
-        # self.new_car.setStyleSheet("color: black; \n font-size: 12px;")
+        self.new_car.setStyleSheet("color: black")
         self.depart_btn.setEnabled(False)
 
     def arrive(self):
@@ -75,7 +75,7 @@ class ParkWindow(QtWidgets.QMainWindow, Ui_ParkWindow):
         db.arrive_car(car_id, num_model, text[3])
         self.new_car.setText(default_text)
         self.new_car.setFont(QFont('Verdana', 12))
-        # park.new_car.setStyleSheet("color: green")
+        park.new_car.setStyleSheet("color: black")
         self.arrive_btn.setEnabled(False)
 
     def new_car_text(self, res):
@@ -90,8 +90,14 @@ class ListCarsWindow(QtWidgets.QMainWindow, Ui_ListCars):
         self.delete_btn.clicked.connect(lambda: self.delete())
 
     def add_car(self):
-        if len(self.num_input.toPlainText()) != 0 and len(self.model_input.toPlainText()) != 0:
-            db.insert_car(self.num_input.toPlainText(), self.model_input.toPlainText())
+        num = self.num_input.toPlainText()
+        model = self.model_input.toPlainText()
+        if len(num) != 0 and len(model) != 0:
+            num = re.sub(' ', '_', num)
+            model = re.sub(' ', '_', model)
+            db.insert_car(num, model)
+            self.num_input.setText("")
+            self.model_input.setText("")
         else:
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)
@@ -100,9 +106,9 @@ class ListCarsWindow(QtWidgets.QMainWindow, Ui_ListCars):
             msg.exec_()
 
     def delete(self):
-        selectedRow = str(self.all_cars.currentRow())
+        selectedRow = str(self.all_cars.currentItem().text())
         if selectedRow is not None:
-            car_id = selectedRow.split(' ')[0]
+            car_id = selectedRow.split(':')[0]
             db.delete_car(car_id)
 
 
@@ -140,6 +146,8 @@ def forbidAction():
     park.new_car.setText(park.new_car.text() + " --Запрет-- ")
     park.new_car.setStyleSheet("color: red")
     duty.new_car.setText(default_text)
+    park.depart_btn.setEnabled(False)
+    park.arrive_btn.setEnabled(False)
 
 
 def getData():
@@ -156,6 +164,7 @@ def getData():
         listCars.all_cars.addItem(str(car_text))
     duty.cars_amount.setText(str(len(duty.all_cars)))
     park.cars_amount.setText(str(len(park.all_cars)))
+    listCars.cars_amount.setText(str(len(listCars.all_cars)))
     # get arrived cars
     duty.arrived_cars.clear()
     park.arrived_cars.clear()
