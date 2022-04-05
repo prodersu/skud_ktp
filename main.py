@@ -1,7 +1,6 @@
 import sys
 
-from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtGui import QFont
+from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtWidgets import QMessageBox
 from datetime import datetime
 
@@ -16,7 +15,7 @@ import pytesseract
 import re
 
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-default_text = "* Новых машин нет"
+default_text = "---Новых машин нет.---"
 
 
 class HomeWindow(QtWidgets.QMainWindow, Ui_HomeWindow):
@@ -64,9 +63,10 @@ class ParkWindow(QtWidgets.QMainWindow, Ui_ParkWindow):
         num_model = text[1] + " " + text[2]
         db.depart_car(car_id, dep_count, text[3], num_model)
         self.new_car.setText(default_text)
-        self.new_car.setFont(QFont('Verdana', 12))
+        self.new_car.setFont(QtGui.QFont("Verdana", 12))
         self.new_car.setStyleSheet("color: black")
         self.depart_btn.setEnabled(False)
+        self.arrive_btn.setEnabled(False)
 
     def arrive(self):
         text = self.new_car.text().split(' ')
@@ -74,9 +74,10 @@ class ParkWindow(QtWidgets.QMainWindow, Ui_ParkWindow):
         num_model = text[1] + " " + text[2]
         db.arrive_car(car_id, num_model, text[3])
         self.new_car.setText(default_text)
-        self.new_car.setFont(QFont('Verdana', 12))
-        park.new_car.setStyleSheet("color: black")
+        self.new_car.setFont(QtGui.QFont("Verdana", 12))
+        self.new_car.setStyleSheet("color: black")
         self.arrive_btn.setEnabled(False)
+        self.depart_btn.setEnabled(False)
 
     def new_car_text(self, res):
         self.new_car.setText(res)
@@ -205,7 +206,7 @@ def sort_results(text):
         if car_num.isnumeric():
             print(car_num)
             res = db.find_car(car_num)
-            if res is not None:
+            if res is not None and duty.new_car.text().split('.')[0] is not car_num:
                 now = datetime.now()
                 current_time = now.strftime("%d/%m/%Y-%H:%M")
                 result_text = str(res[0]) + ". " + str(res[1]) + " " + str(res[2]) + " " + current_time
